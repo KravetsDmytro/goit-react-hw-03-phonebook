@@ -54,13 +54,23 @@ class App extends React.Component {
   };
 
 
-
 // видаленя контакту
 deleteContact = contactId =>{
 this.setState(prevState =>({contacts:
    prevState.contacts.filter(contact => contact.id !==contactId),}));
 };
+//медод класу який викликається один раз.
+componentDidMount () {
+console.log('App comDidMou')
+}
 
+//медод класу який викликається кожного разу при змінах .
+componentDidUpdate (prevProps, prevState) {
+console.log('App com Update')
+if(this.state.contacts !==prevState.contacts){
+console.log('oновлення')
+}
+}
 
   render() {
 const {contacts} = this.state;
@@ -77,13 +87,9 @@ const filteredResults = this.filterContacts();
 <p>
 Загальна кількість контактів: {contacts.length}
 </p>
-{/* <p>Кільквість записаних контактів:{completedContact} </p> */}
   </div>
 
-        {/* <Phone />
 
-        <ContactUs />
-        <Login /> */}
 
       </div>
     )

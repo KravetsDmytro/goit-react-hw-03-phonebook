@@ -23,6 +23,7 @@ class ContactForm extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const contact = {
+       id:shortid.generate(),
       name: this.state.name,
       number: this.state.number,
     };
