@@ -59,16 +59,27 @@ deleteContact = contactId =>{
 this.setState(prevState =>({contacts:
    prevState.contacts.filter(contact => contact.id !==contactId),}));
 };
-//медод класу який викликається один раз.
+//медод класу який викликається один раз____________________
 componentDidMount () {
 console.log('App comDidMou')
+//зчитування з локал сторадж данних і запис іх в стейт.
+const contacts=localStorage.getItem('contacts');
+const parsedContacts= JSON.parse(contacts);
+
+if(parsedContacts){this.setState({contacts: parsedContacts})}
+
 }
+//_______________________________________________
 
 //медод класу який викликається кожного разу при змінах .
 componentDidUpdate (prevProps, prevState) {
 console.log('App com Update')
 if(this.state.contacts !==prevState.contacts){
-console.log('oновлення')
+console.log('oновлення');
+
+//запис в локалсторадж зміни контактів при апдейті та передає в componentDidMount.
+localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+
 }
 }
 
